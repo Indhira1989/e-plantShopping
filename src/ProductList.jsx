@@ -1,10 +1,20 @@
 import React, { useState,useEffect } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
+import { useDispatch } from 'react-redux';
+import { addItem } from './CartSlice';
 function ProductList() {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
+    const [addedToCart, setAddedToCart] = useState([]);
+    const dispatch = useDispatch();
 
+    const handleAddToCart = (plant) => {
+        if (!addedToCart.includes(plant.name)) {
+          setAddedToCart([...addedToCart, plant.name]);
+          dispatch(addItem(plant)); // Dispatching the action with plant details
+        }
+      };
     const plantsArray = [
         {
             category: "Air Purifying Plants",
@@ -267,10 +277,28 @@ const handlePlantsClick = (e) => {
             </div>
         </div>
         {!showCart? (
-        <div className="product-grid">
-
-
-        </div>
+        {plantsArray.map((category) => (
+            <div key={category.category}>
+              <h2>{category.category}</h2>
+              <div className="product-grid">
+                {category.plants.map((plant) => (
+                  <div key={plant.name} className="plant-item">
+                    <img src={plant.image} alt={plant.name} />
+                    <h3>{plant.name}</h3>
+                    <p>{plant.description}</p>
+                    <p>{plant.cost}</p>
+                    <button 
+                  className="add-to-cart-button" 
+                  onClick={() => handleAddToCart(plant.name)}
+                  disabled={addedToCart.includes(plant.name)}
+                >
+                  {addedToCart.includes(plant.name) ? "Added" : "Add to Cart"}
+                </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
  ) :  (
     <CartItem onContinueShopping={handleContinueShopping}/>
 )}
