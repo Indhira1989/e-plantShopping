@@ -1,20 +1,27 @@
 import React, { useState,useEffect } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import { addItem } from './CartSlice';
+
 function ProductList() {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const [addedToCart, setAddedToCart] = useState([]);
     const dispatch = useDispatch();
+    const cartItems = useSelector(state => state.cart.items);
 
     const handleAddToCart = (plant) => {
         if (!addedToCart.includes(plant.name)) {
           setAddedToCart([...addedToCart, plant.name]);
           dispatch(addItem(plant)); // Dispatching the action with plant details
         }
-      };
+    };
+        const getQuantityInCart = (productName) => {
+            const item = cartItems.find(item => item.name === productName);
+            return item ? item.quantity : 0;
+          };
+      
     const plantsArray = [
         {
             category: "Air Purifying Plants",
@@ -289,7 +296,7 @@ const handlePlantsClick = (e) => {
                     <p>{plant.cost}</p>
                     <button 
                   className="add-to-cart-button" 
-                  onClick={() => handleAddToCart(plant.name)}
+                  onClick={() => handleAddToCart(plant)}
                   disabled={addedToCart.includes(plant.name)}
                 >
                   {addedToCart.includes(plant.name) ? "Added" : "Add to Cart"}
