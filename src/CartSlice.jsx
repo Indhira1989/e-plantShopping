@@ -7,29 +7,24 @@ export const CartSlice = createSlice({
   },
   reducers: {
     addItem: (state, action) => {
-        const plant = action.payload;
-        // Check if the item already exists in the cart
-        const existingItem = state.items.find(item => item.name === plant.name);
-  
+        const { name, image, cost } = action.payload;
+        const existingItem = state.items.find(item => item.name === name);
         if (existingItem) {
-          // If the item exists, you may choose to update its quantity or other properties
-          // For example, you might increment quantity if you have a quantity field
+          existingItem.quantity++;
         } else {
-          // If the item does not exist, add it to the items array
-          state.items.push(plant);
+          state.items.push({ name, image, cost, quantity: 1 });
         }
       },
     removeItem: (state, action) => {
-        const plantName = action.payload;
-        // Filter out the item with the given name
-        state.items = state.items.filter(item => item.name !== plantName);
+        const { name } = action.payload;
+        // Remove item from cart by filtering out the item with the matching name
+        state.items = state.items.filter(item => item.name !== name);
       },
     updateQuantity: (state, action) => {
         const { name, quantity } = action.payload;
-        // Find the item and update its quantity
         const item = state.items.find(item => item.name === name);
         if (item) {
-          item.quantity = quantity; // Assuming you have a quantity field in your plant object
+          item.quantity = quantity; // Update the quantity
         }
       },
   },
