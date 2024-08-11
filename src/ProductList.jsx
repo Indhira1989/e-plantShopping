@@ -235,7 +235,7 @@ function ProductList() {
     padding: '15px',
     display: 'flex',
     justifyContent: 'space-between',
-    alignIems: 'center',
+    alignItems: 'center',
     fontSize: '20px',
    }
    const styleObjUl={
@@ -284,7 +284,7 @@ const handlePlantsClick = (e) => {
             </div>
         </div>
         {!showCart? (
-        {plantsArray.map((category) => (
+        plantsArray.map((category) => (
             <div key={category.category}>
               <h2>{category.category}</h2>
               <div className="product-grid">
