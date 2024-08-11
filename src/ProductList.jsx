@@ -302,7 +302,7 @@ const handlePlantsClick = (e) => {
                   {addedToCart.includes(plant.name) ? "Added" : "Add to Cart"}
                 </button>
                   </div>
-                ))}
+                )))
               </div>
             </div>
           ))}
