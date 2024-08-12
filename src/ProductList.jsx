@@ -294,13 +294,7 @@ const handlePlantsClick = (e) => {
                     <h3>{plant.name}</h3>
                     <p>{plant.description}</p>
                     <p>{plant.cost}</p>
-                    <button 
-                  className="add-to-cart-button" 
-                  onClick={() => handleAddToCart(plant)}
-                  disabled={addedToCart.includes(plant.name)}
-                >
-                  {addedToCart.includes(plant.name) ? "Added" : "Add to Cart"}
-                </button>
+                    <button onClick={() => handleAddToCart(product)}>Add to Cart</button> {/* Add to Cart button */}
                   </div>
                 ))}
               </div>
