@@ -11,10 +11,14 @@ function ProductList() {
     const dispatch = useDispatch();
     const cartItems = useSelector(state => state.cart.items);
 
-    const handleAddToCart = (plant) => {
+
+  const handleAddToCart = (plant) => {
+        console.log('Adding to cart:', plant);
         if (!addedToCart.includes(plant.name)) {
+            console.log('Current addedToCart state:', addedToCart);
           setAddedToCart([...addedToCart, plant.name]);
           dispatch(addItem(plant)); // Dispatching the action with plant details
+          console.log('Dispatched addItem action with:', plant);
         }
     };
         const getQuantityInCart = (productName) => {
@@ -294,7 +298,7 @@ const handlePlantsClick = (e) => {
                     <h3>{plant.name}</h3>
                     <p>{plant.description}</p>
                     <p>{plant.cost}</p>
-                    <button onClick={() => handleAddToCart(product)}>Add to Cart</button> {/* Add to Cart button */}
+                    <button onClick={() => handleAddToCart(plant)}>Add to Cart</button> {/* Add to Cart button */}
                   </div>
                 ))}
               </div>

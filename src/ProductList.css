@@ -42,10 +42,36 @@ body {
 /* Product Grid */
 .product-grid {
     display:flex;
-    flex-direction: column;
+    flex-direction: row;
+    gap: 50px;
     width: 100vw;
+    padding: 50px;
+    justify-content: center;
+}
+
+.plant-item {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 400px; /* Adjust the width to fit your desired icon size */
+    height: 400px; /* Adjust the height to fit your desired icon size */
+    text-align: center;
+}
+
+.plant-item img {
+    display: flex;
+    flex-direction: row;
+    width: 300px; /* Adjust the width of the icon image */
+    height: 300px; /* Adjust the height of the icon image */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    margin-bottom: 5px; /* Adds some space between the image and text */
+}
+
+.plant-item h3, .plant-item p {
+    font-size: 14px; /* Adjust font size to fit the icon style */
+    margin: 10; /* Remove default margins */
+    
 }
 .product-list {
     display: flex;
@@ -53,7 +79,6 @@ body {
     gap: 50px;
     /* background-color: pink; */
     /* justify-content: space-between; */
-    padding: 20px;
     width: 100%;
     align-items: center;
     justify-content: center;
