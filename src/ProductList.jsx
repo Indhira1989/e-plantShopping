@@ -7,12 +7,35 @@ import { addItem } from './CartSlice';
 function ProductList() {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
-    const [addedToCart, setAddedToCart] = useState([]);
+    const [addedToCart, setAddedToCart] = useState({});
     const dispatch = useDispatch();
     const cartItems = useSelector(state => state.cart.items);
 
+    const calculateTotalQuantity = () => {
+        if (!Array.isArray(cartItems)) {
+            console.error('Expected cartItems to be an array');
+            return 0;
+        }
+        return cartItems.reduce((total, item) => total + item.quantity, 0);
+    };
 
-  const handleAddToCart = (plant) => {
+    const handleAddToCart = (plant) => {
+        // Dispatch action to add item to the cart
+        dispatch(addItem({
+            name: plant.name,
+            image: plant.image,
+            cost: plant.cost,
+            quantity: 1
+          }));
+          console.log("Item added to cart:", plant);
+        // Update local state to reflect that the plant has been added to the cart
+        setAddedToCart(prevState => ({
+            ...prevState,
+            [plant.name]: true,
+        }));
+    };
+
+  /*const handleAddToCart = (plant) => {
         console.log('Adding to cart:', plant);
         if (!addedToCart.includes(plant.name)) {
             console.log('Current addedToCart state:', addedToCart);
@@ -20,7 +43,7 @@ function ProductList() {
           dispatch(addItem(plant)); // Dispatching the action with plant details
           console.log('Dispatched addItem action with:', plant);
         }
-    };
+    };*/
         const getQuantityInCart = (productName) => {
             const item = cartItems.find(item => item.name === productName);
             return item ? item.quantity : 0;
@@ -263,10 +286,19 @@ const handlePlantsClick = (e) => {
     setShowCart(false); // Hide the cart when navigating to About Us
 };
 
-   const handleContinueShopping = (e) => {
+/*const handleContinueShopping = (e) => {
     e.preventDefault();
     setShowCart(false);
+  };*/
+
+  const handleContinueShopping = (e) => {
+    if(e){
+      e.preventDefault();
+    }
+    setShowCart(false);
   };
+
+   
     return (
         <div>
              <div className="navbar" style={styleObj}>
@@ -284,22 +316,38 @@ const handlePlantsClick = (e) => {
             </div>
             <div style={styleObjUl}>
                 <div> <a href="#" onClick={(e)=>handlePlantsClick(e)} style={styleA}>Plants</a></div>
-                <div> <a href="#" onClick={(e) => handleCartClick(e)} style={styleA}><h1 className='cart'><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" id="IconChangeColor" height="68" width="68"><rect width="156" height="156" fill="none"></rect><circle cx="80" cy="216" r="12"></circle><circle cx="184" cy="216" r="12"></circle><path d="M42.3,72H221.7l-26.4,92.4A15.9,15.9,0,0,1,179.9,176H84.1a15.9,15.9,0,0,1-15.4-11.6L32.5,37.8A8,8,0,0,0,24.8,32H8" fill="none" stroke="#faf9f9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" id="mainIconPathAttribute"></path></svg></h1></a></div>
-            </div>
+                <div> <a href="#" onClick={() => setShowCart(true)} style={styleA}><h1 className='cart'>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" id="IconChangeColor" height="68" width="68">
+              <rect width="156" height="156" fill="none"></rect>
+              <circle cx="80" cy="216" r="12"></circle>
+              <circle cx="184" cy="216" r="12"></circle>
+              <path d="M42.3,72H221.7l-26.4,92.4A15.9,15.9,0,0,1,179.9,176H84.1a15.9,15.9,0,0,1-15.4-11.6L32.5,37.8A8,8,0,0,0,24.8,32H8" fill="none" stroke="#faf9f9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" id="mainIconPathAttribute"></path>
+            </svg>
+            <span className='cart_quantity_count'>{calculateTotalQuantity()}</span>
+          </h1></a></div>
+        </div>
         </div>
         {!showCart? (
         plantsArray.map((category) => (
             <div key={category.category}>
-              <h2>{category.category}</h2>
+              <div className="category-container">
+            <h2 className="category-name">{category.category}</h2>
+          </div>
               <div className="product-grid">
                 {category.plants.map((plant) => (
-                  <div key={plant.name} className="plant-item">
-                    <img src={plant.image} alt={plant.name} />
-                    <h3>{plant.name}</h3>
+                  <div key={plant.name} className="product-card">
+                    <img src={plant.image} alt={plant.name} className="product-image" />
+                    <h3 className="product-title">{plant.name}</h3>
+                    <p className="product-price">{plant.cost}</p>
                     <p>{plant.description}</p>
-                    <p>{plant.cost}</p>
-                    <button onClick={() => handleAddToCart(plant)}>Add to Cart</button> {/* Add to Cart button */}
+                    <button 
+                                    onClick={() => handleAddToCart(plant)}
+                                    disabled={addedToCart[plant.name]} // Disable button if item is already in cart
+                                >
+                                    {addedToCart[plant.name] ? 'Added to cart' : 'Add to Cart'}
+                                </button>
                   </div>
+
                 ))}
               </div>
             </div>

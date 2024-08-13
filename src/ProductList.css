@@ -38,14 +38,25 @@ body {
     text-decoration: none;
    
 }
+.category-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    margin-bottom: 20px; /* Space between the category name and product grid */
+}
 
-/* Product Grid */
+.category-name {
+    font-size: 2rem; /* Adjust font size as needed */
+    font-weight: bold;
+    text-align: center; /* Center text */
+}
+
 .product-grid {
-    display:flex;
+    display: flex;
     flex-direction: row;
     gap: 50px;
     width: 100vw;
     padding: 50px;
+    align-items: center;
     justify-content: center;
 }
 
@@ -69,6 +80,7 @@ body {
 }
 
 .plant-item h3, .plant-item p {
+    align-items: center;
     font-size: 14px; /* Adjust font size to fit the icon style */
     margin: 10; /* Remove default margins */
     
@@ -142,10 +154,18 @@ body {
     background-color: #e74c3c;
     color: #fff;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 10px; /* Position from the top */
+    right: 10px; /* Position from the right */
     padding: 5px 10px;
     border-radius: 0 0 0 5px;
+    font-size: 14px; /* Font size */
+    font-weight: bold; /* Make text bold */
+    z-index: 10; /* Ensure it appears above other content */
+}
+
+/* Ensure that the product card has position relative to contain the absolute positioned badge */
+.product-card {
+    position: relative; /* Ensure position relative to position the badge correctly */
 }
 .tag_home_link{
     display: flex;
@@ -197,6 +217,28 @@ body {
     font-size: 29px;
 
 }
+
+.cart-icon {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .cart-icon img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .cart-icon-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: bold;
+  }
 .plantname_heading{
    display: flex;
    align-items: center;
