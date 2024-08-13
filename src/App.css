@@ -37,19 +37,19 @@
 }
 
 .landing_content {
- margin-top: 430px;
+ margin-top: 300px;
   margin-left: 100px;
-  transform: translate(-50%, -50%);
+  transform: translate(-30%, -30%);
   z-index: 1;
   text-align: center;
   /* background-color: red; */
-  width: 400px;
-  height: 400px;
+  width: 300px;
+  height: 550px;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  gap: 10px;
+  gap: -10px;
 }
 
 .content p,
@@ -58,12 +58,12 @@
 }
 
 .content h1 {
-  font-size: 48px;
+  font-size: 35px;
   margin-bottom: 10px;
 }
 
 .content p {
-  font-size: 25px;
+  font-size: 23px;
 }
 
 .divider {
@@ -123,10 +123,9 @@
   }
 
   .landing_content {
-    margin-top: 100px; /* Adjust as needed */
+    margin-top: 100px;
     margin-left: 0;
-    width: 80%; /* Adjust as needed */
-    text-align: center;
+    width: 80%;
   }
 
   .aboutus_container {
@@ -137,8 +136,8 @@
 
 @media screen and (max-width: 480px) {
   .landing_content {
-    margin-top: 50px; /* Adjust as needed */
-    width: 90%; /* Adjust as needed */
+    margin-top: 50px;
+    width: 90%;
   }
 
   .aboutus_container {

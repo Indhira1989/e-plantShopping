@@ -336,8 +336,8 @@ const handlePlantsClick = (e) => {
               <div className="product-grid">
                 {category.plants.map((plant) => (
                   <div key={plant.name} className="product-card">
-                    <img src={plant.image} alt={plant.name} className="product-image" />
                     <h3 className="product-title">{plant.name}</h3>
+                    <img src={plant.image} alt={plant.name} className="product-image" />
                     <p className="product-price">{plant.cost}</p>
                     <p>{plant.description}</p>
                     <button 
