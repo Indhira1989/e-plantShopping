@@ -35,15 +35,6 @@ function ProductList() {
         }));
     };
 
-  /*const handleAddToCart = (plant) => {
-        console.log('Adding to cart:', plant);
-        if (!addedToCart.includes(plant.name)) {
-            console.log('Current addedToCart state:', addedToCart);
-          setAddedToCart([...addedToCart, plant.name]);
-          dispatch(addItem(plant)); // Dispatching the action with plant details
-          console.log('Dispatched addItem action with:', plant);
-        }
-    };*/
         const getQuantityInCart = (productName) => {
             const item = cartItems.find(item => item.name === productName);
             return item ? item.quantity : 0;
@@ -307,7 +298,7 @@ const handlePlantsClick = (e) => {
                <img src="https://cdn.pixabay.com/photo/2020/08/05/13/12/eco-5465432_1280.png" alt="" />
                <a href="/" style={{textDecoration:'none'}}>
                         <div>
-                    <h3 style={{color:'white'}}>paradise Nursery</h3>
+                    <h3 style={{color:'white'}}>Paradise Nursery</h3>
                     <i style={{color:'white'}}>Where Green Meets Serenity</i>
                     </div>
                     </a>

@@ -41,30 +41,27 @@ body {
 .category-container {
     display: flex;
     justify-content: center; /* Center horizontally */
-    margin-bottom: 20px; /* Space between the category name and product grid */
+    margin-top: 20px;
+    margin-bottom: -10px; /* Space between the category name and product grid */
+    text-decoration-line: overline underline;
+    text-decoration-style: solid;
+    text-decoration-thickness: 2px; /* Adjusts the thickness of the lines */
+  text-decoration-color: black;   /* Adjusts the color of the lines */
+  text-decoration-skip-ink: none; /* Ensures the lines do not skip over text */
+  text-underline-offset: 5px
 }
 
 .category-name {
-    font-size: 2rem; /* Adjust font size as needed */
+    font-size: 30px; /* Adjust font size as needed */
     font-weight: bold;
     text-align: center; /* Center text */
 }
 
-.product-grid {
-    display: flex;
-    flex-direction: row;
-    gap: 50px;
-    width: 100vw;
-    padding: 50px;
-    align-items: center;
-    justify-content: center;
-}
 
 .plant-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     width: 400px; /* Adjust the width to fit your desired icon size */
     height: 400px; /* Adjust the height to fit your desired icon size */
     text-align: center;
@@ -80,7 +77,6 @@ body {
 }
 
 .plant-item h3, .plant-item p {
-    align-items: center;
     font-size: 14px; /* Adjust font size to fit the icon style */
     margin: 10; /* Remove default margins */
     
@@ -96,20 +92,23 @@ body {
     justify-content: center;
 }
 
-/* Product Card */
-.product-card {
-    flex: 0 0 calc(33.33% - 20px); /* Adjust width for 3 cards per row with 20px gap */
-    max-width: calc(26.33% - 20px); /* Adjust max-width for 3 cards per row with 20px gap */
-    margin-bottom: 20px;
-    padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    gap: 20px; /* Adjust the gap between the plants */
+    padding: 50px;
+  }
+  
+  .product-card {
+    background-color: #f9f9f9; /* Optional: Add a background color */
+    padding: 5px;
+    height: 350px;
+    width: 350px;
     text-align: center;
-    position: relative;
-    
-    gap: 20px;
-}
+    border: 1px solid #ddd; /* Optional: Add a border */
+    border-radius: 8px; /* Optional: Add border-radius */
+  }
 
 /* Pseudo-classes - Hover effect on product button */
 .product-card:hover {
